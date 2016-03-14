@@ -25,14 +25,14 @@ Or install it yourself as:
 Parse your graphql string to get an AST:
 ```ruby
 require 'graphql/parser'
-ast = GraphQL::Parser.parse('{ some_graphql_string }') # returns GraphQL::AST
+ast = GraphQL::Parser.parse('{ some_graphql_string }') # returns GraphQL::Parser::AST
 ```
 
-This will raise `GraphQL::ParseError` on malformed input.
+This will raise `GraphQL::Parser::Error` on malformed input.
 
 Implement a visitor:
 ```ruby
-class MyVisitor < GraphQL::Visitor
+class MyVisitor < GraphQL::Parser::Visitor
   def visit_document(node)
     # do something interesting in pre-order
   end
@@ -52,7 +52,7 @@ v = MyVisitor.new
 v.accept(ast)
 ```
 
-You can return `GraphQL::SKIP_CHILDREN` from a visitor to skip visiting that
+You can return `GraphQL::Parser::SKIP_CHILDREN` from a visitor to skip visiting that
 node's children.
 
 ## Contributing
